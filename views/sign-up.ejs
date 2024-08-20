@@ -1,1 +1,50 @@
 <h1>Sign up</h1>
+
+<form action="/sign-up" method="POST">
+
+  <!-- First name input -->
+  <div>
+    <label for="first_name">First name</label>
+    <input id="first_name" name="first_name" type="text" value="<%= (locals.inputs && locals.inputs.first_name) || '' %>">
+  </div>
+
+  <!-- First name errors -->
+  <%- include('partials/error', { errors: locals.errors, field: 'first_name' }) %>
+
+  <!-- Last name input -->
+  <div>
+    <label for="last_name">Last name</label>
+    <input id="last_name" name="last_name" type="text" value="<%= (locals.inputs && locals.inputs.last_name) || '' %>">
+  </div>
+
+  <!-- Last name errors -->
+  <%- include('partials/error', { errors: locals.errors, field: 'last_name' }) %>
+
+  <!-- Username input -->
+  <div>
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" value="<%= (locals.inputs && locals.inputs.username) || '' %>">
+  </div>
+
+  <!-- Username errors -->
+  <%- include('partials/error', { errors: locals.errors, field: 'username' }) %>
+
+  <!-- Password input -->
+  <div>
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" value="<%= (locals.inputs && locals.inputs.password) || ''%>">
+  </div>
+
+  <!-- Password errors -->
+  <%- include('partials/error', { errors: locals.errors, field: 'password' }) %>
+
+  <div>
+    <label for="confirm_password">Confirm Password</label>
+    <input id="confirm_password" name="confirm_password" type="password" value="<%= (locals.inputs &&locals.inputs.confirm_password) || ''%>">
+  </div>
+
+  <!--Confirm Password errors -->
+  <%- include('partials/error', { errors: locals.errors, field: 'confirm_password' }) %>
+
+  <button type="submit">Sign up</button>
+</form>

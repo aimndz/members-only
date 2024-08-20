@@ -19,8 +19,9 @@ const SQL = `
         title VARCHAR (255),
         text TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
+    );
         
+    INSERT INTO users (first_name, last_name, username, password) VALUES ('first', 'last', 'user1', 'asdfg');
 `
 
 async function main() {
