@@ -1,1 +1,24 @@
 <h1>Create</h1>
+
+<form action="/create" method="POST">
+
+  <!-- Title input -->
+  <div>
+    <label for="title">Title</label>
+    <input id="title" name="title" type="text">
+  </div>
+
+  <!-- Title errors -->
+  <%- include('partials/error', { errors: locals.errors, field: 'title' }) %>
+
+  <!-- Message input -->
+  <div>
+    <label for="message">Message</label>
+    <input id="message" name="message" type="text">
+  </div>
+
+  <!-- Message errors -->
+  <%- include('partials/error', { errors: locals.errors, field: 'message' }) %>
+
+  <button type="submit">Submit</button>
+</form>

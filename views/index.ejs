@@ -1,17 +1,14 @@
-<h1>Hello world</h1>
-
-<ul>
-  <li><a href="/login">Login</a></li>
-  <li><a href="/sign-up">Sign-up</a></li>
-  <li><a href="/join">Join</a></li>
-  <li><a href="/create">Create</a></li>
-  <li><a href="/delete">Delete</a></li>
-</ul>
-
 <main>
   <% if (user) {%>
   <h1>WELCOME BACK <%= user.username %></h1>
+  <a href="/create">+ Create</a>
   <a href="/logout">LOG OUT</a>
+  <% } else { %>
+  <ul>
+    <li><a href="/login">Login</a></li>
+    <li><a href="/sign-up">Sign-up</a></li>
+    <li><a href="/join">Join</a></li>
+    <li><a href="/delete">Delete</a></li>
+  </ul>
   <% } %>
-
 </main>
