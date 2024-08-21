@@ -2,6 +2,7 @@ const asynHandler = require("express-async-handler");
 const db = require("../db/queries");
 const {body, validationResult} = require("express-validator");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 // Handle sign up GET
 exports.sign_up_get = asynHandler(async (req, res) => {
@@ -97,10 +98,22 @@ exports.sign_up_post = [
 
 // Handle login get
 exports.login_get = asynHandler(async (req, res) => {
-    res.render("login");
+    res.render("login", { user: req.user });
 })
 
 // Handle login POST
-exports.login_post = asynHandler(async (req, res) => {
-    // Not implemented yet
+exports.login_post = asynHandler(async (req, res, next) => {
+    passport.authenticate("local", {
+        successRedirect: "/",
+        failureRedirect: "/"
+    })(req, res, next);
+})
+
+exports.logout_get = asynHandler(async (req, res) => {
+    req.logout((err) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect("/");
+    });
 })

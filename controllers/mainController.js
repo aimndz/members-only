@@ -3,7 +3,7 @@ const asynHandler = require("express-async-handler");
 
 // Handle home page
 exports.index = asynHandler(async (req, res) => {
-    res.render("index");
+    res.render("index", { user: req.user });
 })
 
 // Handle join GET
