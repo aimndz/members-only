@@ -1,14 +1,39 @@
 <main>
-  <% if (user) {%>
+  <% if (user) { %>
+
+  <% if (user.mem_status === "admin") { %>
+
+  <h1>Admin Status</h1>
   <h1>WELCOME BACK <%= user.username %></h1>
+  <a href="/delete">Delete</a>
   <a href="/create">+ Create</a>
   <a href="/logout">LOG OUT</a>
+  <%- include('partials/messages') %>
+
+  <% } else if (user.mem_status === "member") { %>
+
+  <h1>Member status</h1>
+  <h1>WELCOME BACK <%= user.username %></h1>
+  <a href="/create">+ Create</a>
+  <a href="/admin">Admin</a>
+  <a href="/logout">LOG OUT</a>
+  <%- include('partials/messages') %>
+
   <% } else { %>
+
+  <h1>WELCOME BACK <%= user.username %></h1>
+  <a href="/join">Join</a>
+  <a href="/logout">LOG OUT</a>
+  <%- include('partials/messages') %>
+
+  <% } %> <% } else { %>
+
   <ul>
     <li><a href="/login">Login</a></li>
     <li><a href="/sign-up">Sign-up</a></li>
-    <li><a href="/join">Join</a></li>
-    <li><a href="/delete">Delete</a></li>
   </ul>
+
+  <%- include('partials/messages') %>
+
   <% } %>
 </main>

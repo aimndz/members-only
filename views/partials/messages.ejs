@@ -1,0 +1,11 @@
+<ul>
+  <% messages.forEach((message) => { %>
+  <li>
+    <p class="message-username"><%= user ? `${message.username} • ${message.created_at}` : "Anonymous" %></p>
+    <p class="message-title"><%= message.title %></p>
+    <p class="message-text"><%= message.text %></p>
+  </li>
+  <% }) %>
+</ul>
+
+<% if (user) { %> <% }%>
