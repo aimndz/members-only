@@ -4,7 +4,9 @@ const mainRouter = Router();
 const mainController = require("../controllers/mainController");
 
 mainRouter.get("/", mainController.index);
+
 mainRouter.get("/join", mainController.join_get);
+mainRouter.post("/join", mainController.join_post);
 
 mainRouter.get("/create", mainController.create_get);
 mainRouter.post("/create", mainController.create_post);

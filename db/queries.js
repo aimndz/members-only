@@ -11,3 +11,9 @@ exports.insertMessage = async (user_id, title, text) => {
                     [user_id, title, text]
     );
 }
+
+exports.updateMemberStatus = async (user_id, newStatus) => {
+    await pool.query('UPDATE users SET mem_status = $1 WHERE id = $2',
+                    [newStatus, user_id,]
+    );
+}

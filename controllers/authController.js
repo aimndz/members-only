@@ -164,9 +164,6 @@ exports.login_post = [
     })
 ]
 
-
-
-
 exports.logout_get = asynHandler(async (req, res) => {
     req.logout((err) => {
         if (err) {

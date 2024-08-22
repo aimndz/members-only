@@ -1,20 +1,43 @@
 const asynHandler = require("express-async-handler");
 const {body, validationResult} = require("express-validator")
+const getRiddle =require("../config/passcodes");
 const db = require("../db/queries");
+
 
 // Handle home page
 exports.index = asynHandler(async (req, res) => {
+    console.log(req.user);
     res.render("index", { user: req.user });
 })
 
 // Handle join GET
 exports.join_get = asynHandler(async (req, res) => {
-    res.render("join");
+    const riddle = getRiddle();
+    req.session.riddle = riddle;
+
+    res.render("join", {
+        title: "Join",
+        question: riddle.question,
+    });
 })
 
 // Handle join POST
 exports.join_post = asynHandler(async (req, res) => {
-    // Not implemented yet
+    const { passcode } = req.body;
+    const riddle = req.session.riddle;
+    const user_id = req.user.id;
+
+    if (passcode.trim().toLowerCase() === riddle.answer.toLowerCase()){
+        await db.updateMemberStatus(user_id, "member");
+        res.redirect("/");
+        console.log("Correct");
+    } else {
+        //Handle incorrect answer
+        res.status(400).render("join", {
+            question: riddle.question,
+            errors: { passcode: ["Incorrect answer. Please try again."] },
+        })
+    }
 })
 
 // Handle create GET
@@ -29,7 +52,7 @@ exports.create_post = [
     body("title")
         .trim()
         .notEmpty().withMessage("Title should not be empty."),
-
+ 
     // Validate message
     body("message")
         .trim()
