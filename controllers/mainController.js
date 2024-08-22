@@ -17,8 +17,6 @@ exports.index = asynHandler(async (req, res) => {
     };
   });
 
-  console.log(formattedMessages);
-
   res.render("index", { user: req.user, messages: formattedMessages });
 });
 

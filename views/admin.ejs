@@ -1,0 +1,17 @@
+<h1>Admin</h1>
+
+<p>Question</p>
+<p><%= question %></p>
+
+<form action="/admin" method="POST">
+  <!-- Passcode input -->
+  <div>
+    <label for="passcode">Enter the passcode</label>
+    <input id="passcode" name="passcode" type="text" />
+  </div>
+
+  <!-- Passcode errors -->
+  <%- include('partials/error', { errors: locals.errors, field: 'passcode' }) %>
+
+  <button type="submit">Submit</button>
+</form>
