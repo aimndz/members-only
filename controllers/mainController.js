@@ -1,13 +1,25 @@
 const asynHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 const getRiddle = require("../config/passcodes");
+const { formatDistanceToNow } = require("date-fns");
 const db = require("../db/queries");
 
 // Handle home page
 exports.index = asynHandler(async (req, res) => {
   const messages = await db.getAllMessages();
-  console.log(messages);
-  res.render("index", { user: req.user, messages: messages });
+
+  const formattedMessages = messages.map((message) => {
+    return {
+      ...message,
+      created_at: formatDistanceToNow(new Date(message.created_at), {
+        addSuffix: true,
+      }),
+    };
+  });
+
+  console.log(formattedMessages);
+
+  res.render("index", { user: req.user, messages: formattedMessages });
 });
 
 // Handle join GET
