@@ -54,7 +54,7 @@ exports.sign_up_post = [
     // Handle sign up
     asynHandler(async (req, res) => {
         const errors = validationResult(req);
-
+        
         // Handle Errors
         if (!errors.isEmpty()){
 
@@ -98,16 +98,74 @@ exports.sign_up_post = [
 
 // Handle login get
 exports.login_get = asynHandler(async (req, res) => {
-    res.render("login", { user: req.user });
+    res.render("login");
+
 })
 
 // Handle login POST
-exports.login_post = asynHandler(async (req, res, next) => {
-    passport.authenticate("local", {
-        successRedirect: "/",
-        failureRedirect: "/"
+exports.login_post = [
+
+    // Validate username
+    body("username")
+    .trim()
+    .notEmpty().withMessage("Username should not be empty."),
+    
+     // Validate password
+    body("password")
+    .trim()
+    .notEmpty().withMessage("Password should not be empty."),
+
+    
+    // Handle login
+    asynHandler(async (req, res, next) => {
+
+        const errors = validationResult(req);
+        
+        // Handle Errors
+        if (!errors.isEmpty()){
+
+            // Group error messages with their 'path' 
+            const errorMap = errors.array().reduce((acc, error) => {
+                if (!acc[error.path]) {
+                    acc[error.path] = [];
+                }
+                acc[error.path].push(error.msg);
+                return acc;
+            }, {});
+
+            return res.status(400).render("login", {
+                title: "Login",
+                errors: errorMap,
+
+                // Pass the input back to the form
+                inputs: req.body,
+                messages: []
+            })
+        }
+
+      passport.authenticate("local", (err, user, info) => {
+        if (err) { return next(err); }
+
+        // Handle error
+        if (!user) {
+            return res.status(400).render("login", {
+                title: "Login",
+                errors: { authentication: [info.message] }, 
+                inputs: req.body, 
+            });
+        }
+
+        // Handle success
+        req.logIn(user, (err) => {
+            if (err) { return next(err); }
+            return res.redirect("/");
+        });
     })(req, res, next);
-})
+    })
+]
+
+
+
 
 exports.logout_get = asynHandler(async (req, res) => {
     req.logout((err) => {

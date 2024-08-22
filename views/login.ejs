@@ -1,13 +1,26 @@
 <h1>Login</h1>
 
 <form action="/login" method="POST">
+  <!-- Username input -->
   <div>
     <label for="username">Username</label>
-    <input id="username" name="username" type="text">
+    <input id="username" name="username" type="text" value="<%= (locals.inputs && locals.inputs.username) || '' %>">
   </div>
+
+  <!-- Username errors -->
+  <%- include('partials/error', { errors: locals.errors, field: 'username' }) %>
+
+  <!-- Password input -->
   <div>
     <label for="password">Password</label>
-    <input id="password" name="password" type="password">
+    <input id="password" name="password" type="password" value="<%= (locals.inputs && locals.inputs.password) || '' %>">
   </div>
+
+  <!-- Password errors -->
+  <%- include('partials/error', { errors: locals.errors, field: 'password' }) %>
+
+  <!-- Authentication error -->
+  <%- include('partials/error', { errors: locals.errors, field: 'authentication' }) %>
+
   <button type="submit">Login</button>
 </form>
