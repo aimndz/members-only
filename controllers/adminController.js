@@ -33,10 +33,15 @@ exports.admin_post = asynHandler(async (req, res) => {
 
 // Handle delete GET
 exports.delete_get = asynHandler(async (req, res) => {
-  res.render("delete");
+  const message = await db.getMessageById(req.params.id);
+  console.log(message);
+
+  res.render("delete", { message: message[0] });
 });
 
 // Handle delete POST
 exports.delete_post = asynHandler(async (req, res) => {
-  // Not implemented yet
+  await db.deleteMessageById(req.params.id);
+
+  res.redirect("/");
 });

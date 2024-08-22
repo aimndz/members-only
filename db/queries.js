@@ -21,7 +21,7 @@ exports.updateMemberStatus = async (user_id, newStatus) => {
   ]);
 };
 
-exports.getAllMessages = async (user_id, newStatus) => {
+exports.getAllMessages = async () => {
   const { rows } = await pool.query(`
     SELECT m.id, u.username, m.title, m.text, m.created_at
     FROM messages m
@@ -30,4 +30,23 @@ exports.getAllMessages = async (user_id, newStatus) => {
     `);
 
   return rows;
+};
+
+exports.getMessageById = async (message_id) => {
+  const { rows } = await pool.query(
+    `
+    SELECT m.id, u.username, m.title, m.text, m.created_at
+    FROM messages m
+    LEFT JOIN users u
+    ON m.user_id = u.id
+    WHERE m.id = $1
+    `,
+    [message_id]
+  );
+
+  return rows;
+};
+
+exports.deleteMessageById = async (message_id) => {
+  await pool.query(`DELETE FROM messages WHERE id = $1`, [message_id]);
 };

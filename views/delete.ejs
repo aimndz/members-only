@@ -1,1 +1,11 @@
 <h1>Delete</h1>
+
+<form action=<%= `/${message.id}/delete` %> method="POST">
+  <h1>Are you sure you want to delete?</h1>
+  <p><%=message.title%></p>
+  <p><%=message.text%></p>
+  <p>by</p>
+  <p><%=message.username%></p>
+
+  <button type="submit">Delete</button>
+</form>
