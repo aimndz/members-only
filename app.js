@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 require("dotenv").config();
 const session = require("express-session");
-const passport = require("./config/passport"); 
+const passport = require("./config/passport");
 
 // Import routers
 const mainRouter = require("./routes/mainRouter");
@@ -15,7 +15,7 @@ app.set("view engine", "ejs");
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Initialize session and passport
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
