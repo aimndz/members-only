@@ -40,9 +40,17 @@ exports.sign_up_post = [
     .isLength()
     .withMessage("Username must be between 3 and 20 characters long.")
     .matches(/^[a-zA-Z0-9_]+$/)
-    .withMessage(
-      "Username can only contain letters, numbers, and underscores."
-    ),
+    .withMessage("Username can only contain letters, numbers, and underscores.")
+    .custom(async (value) => {
+      const user = await db.getUserByUsername(value);
+
+      // Check if the username already exists
+      if (user.length > 0) {
+        throw new Error("Username already exists.");
+      }
+
+      return true;
+    }),
 
   // Validate password
   body("password")
