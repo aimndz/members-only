@@ -1,7 +1,7 @@
 <div class="w-full self-center mx-auto flex flex-col items-center">
-  <h1 class="max-w-2xl text-secondary-400 font-bold text-7xl text-center"><%= title %></h1>
+  <%-include("partials/title", {text: title }) %>
 
-  <p class="text-secondary-300 text-xs mt-10 mb-5"><em>Note: Only true admins would know this</em></p>
+  <p class="text-secondary-300 text-xs mt-5 mb-5"><em>Note: Only true admins would know this</em></p>
 
   <div class="w-full max-w-2xl px-3 pt-8 pb-10  w-2xl bg-secondary-500 border border-solid border-secondary-400 rounded-lg mx-auto relative">
     <p class="text-center font-semibold w-full max-w-96 mx-auto">"<%= question %>"</p>
@@ -22,7 +22,7 @@
     </a>
   </div>
 
-  <form action="/admin" method="POST" class="w-96 mt-10 space-y-5">
+  <form action="/admin" method="POST" class="max-w-96 w-full mt-10 space-y-5">
     <div>
       <!-- Password input -->
       <%-include("partials/input", {text: "Enter the passcode to join", name: "passcode", type: "passcode", value: (locals.inputs && locals.inputs.passcode) || '', placeholder: "Passcode" }) %>

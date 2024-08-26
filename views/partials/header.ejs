@@ -1,38 +1,35 @@
-<header class="mt-5 flex justify-between items-center">
+<header class="mt-5 flex flex-col gap-3 md:flex-row justify-between items-center">
   <div class="max-w-32">
     <a href="/" class="cursor-pointer"><img src="images/access-only-logo.png" alt="logo"></a>
   </div>
 
-  <div>
-    <!-- Greet user if exists -->
-    <p class="font-bold text-3xl"><% if (user) { %>
-      Hello, <%= user.username %>!
-    <p class="text-center text-xs text-secondary-300"><i>( <%= user.mem_status %> )</i></p>
-    <% } %>
-    </p>
+  <div class="flex flex-col md:flex-row items-center justify-end gap-5 w-full">
+    <div class="m-auto">
+      <!-- Greet user if exists -->
+      <p class="font-bold text-xl md:text-3xl"><% if (user) { %>
+        Hello, <%= user.username %>!
+      <p class="text-center text-xs text-secondary-300"><i>( <%= user.mem_status %> )</i></p>
+      <% } %>
+      </p>
+    </div>
+    <nav>
+      <ul class="flex gap-3">
+        <!-- Join button for basic status-->
+        <% if (user && locals.user.mem_status === "basic") { %>
+        <%- include("button-nav", {text: "Join club", url: "/join"}) %>
+        <% } %>
+        <!-- Admin button for member status -->
+        <% if (user && locals.user.mem_status === "member") {%>
+        <%- include("button-nav", {text: "Admin", url: "/admin"}) %>
+        <% } %>
+        <% if (user) { %>
+        <!-- Logout button for all views if the user exists -->
+        <%- include("button-nav", {text: "Log out", url: "/logout"}) %>
+        <% } else { %>
+        <!-- Login button if the user doesn't exists -->
+        <%- include("button-nav", {text: "Login", url: "/login"}) %>
+        <% } %>
+      </ul>
+    </nav>
   </div>
-
-  <nav>
-    <ul class="flex gap-3">
-
-      <!-- Join button for basic status-->
-      <% if (user && locals.user.mem_status === "basic") { %>
-      <%- include("button-nav", {text: "Join club", url: "/join"}) %>
-      <% } %>
-
-      <!-- Admin button for member status -->
-      <% if (user && locals.user.mem_status === "member") {%>
-      <%- include("button-nav", {text: "Admin", url: "/admin"}) %>
-      <% } %>
-
-      <% if (user) { %>
-      <!-- Logout button for all views if the user exists -->
-      <%- include("button-nav", {text: "Log out", url: "/logout"}) %>
-      <% } else { %>
-      <!-- Login button if the user doesn't exists -->
-      <%- include("button-nav", {text: "Login", url: "/login"}) %>
-      <% } %>
-
-    </ul>
-  </nav>
 </header>

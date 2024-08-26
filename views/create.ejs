@@ -1,8 +1,7 @@
-<div class="w-96 self-center mx-auto">
-  <h1 class="max-w-2xl text-secondary-400 font-bold text-7xl text-center"><%= title %></h1>
+<div class="max-w-96 w-full self-center mx-auto">
+  <div class="flex justify-center"><%-include("partials/title", {text: title }) %></div>
 
-  <form action="/create" method="POST" class="space-y-5">
-
+  <form action="/create" method="POST" class="space-y-5 mt-5">
     <div>
       <!-- Title input -->
       <%-include("partials/input", {text: "Title", name: "title", type: "text", value: (locals.inputs && locals.inputs.title) || '', placeholder: "Enter title" }) %>

@@ -1,5 +1,5 @@
-<div class=" flex max-w-2xl mx-auto justify-between items-center mt-10">
-  <h1 class="max-w-2xl text-secondary-400 font-bold text-7xl ">Messages</h1>
+<div class="flex flex-col items-start justify-between mb-3 md:mb-0 md:flex-row md:justify-between md:items-center max-w-2xl mx-auto mt-10">
+  <%-include("partials/title", {text: "Messages"}) %>
   <% if (user && user.mem_status !== "basic") { %>
   <a href="/create" class="block font-bold">+ Create</a>
   <% } %>

@@ -618,6 +618,14 @@ video {
   right: 0.75rem;
 }
 
+.top-0{
+  top: 0px;
+}
+
+.m-auto{
+  margin: auto;
+}
+
 .mx-4{
   margin-left: 1rem;
   margin-right: 1rem;
@@ -684,6 +692,10 @@ video {
   width: 100%;
 }
 
+.w-auto{
+  width: auto;
+}
+
 .max-w-2xl{
   max-width: 42rem;
 }
@@ -700,6 +712,10 @@ video {
   max-width: 24rem;
 }
 
+.max-w-3xl{
+  max-width: 48rem;
+}
+
 .cursor-pointer{
   cursor: pointer;
 }
@@ -708,8 +724,20 @@ video {
   flex-direction: column;
 }
 
+.items-start{
+  align-items: flex-start;
+}
+
 .items-center{
   align-items: center;
+}
+
+.justify-start{
+  justify-content: flex-start;
+}
+
+.justify-end{
+  justify-content: flex-end;
 }
 
 .justify-center{
@@ -718,6 +746,18 @@ video {
 
 .justify-between{
   justify-content: space-between;
+}
+
+.justify-around{
+  justify-content: space-around;
+}
+
+.justify-evenly{
+  justify-content: space-evenly;
+}
+
+.justify-stretch{
+  justify-content: stretch;
 }
 
 .gap-2{
@@ -730,6 +770,14 @@ video {
 
 .gap-5{
   gap: 1.25rem;
+}
+
+.gap-20{
+  gap: 5rem;
+}
+
+.gap-36{
+  gap: 9rem;
 }
 
 .space-y-3 > :not([hidden]) ~ :not([hidden]){
@@ -832,14 +880,34 @@ video {
   line-height: 2.25rem;
 }
 
-.text-7xl{
-  font-size: 4.5rem;
+.text-5xl{
+  font-size: 3rem;
   line-height: 1;
 }
 
 .text-xs{
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-6xl{
+  font-size: 3.75rem;
+  line-height: 1;
 }
 
 .font-bold{
@@ -922,7 +990,61 @@ video {
   background-color: rgb(55 55 55 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-accent-500:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 46 46 / var(--tw-bg-opacity));
+@media (min-width: 768px){
+  .md\:mt-10{
+    margin-top: 2.5rem;
+  }
+
+  .md\:mb-0{
+    margin-bottom: 0px;
+  }
+
+  .md\:flex-row{
+    flex-direction: row;
+  }
+
+  .md\:items-center{
+    align-items: center;
+  }
+
+  .md\:justify-between{
+    justify-content: space-between;
+  }
+
+  .md\:px-8{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .md\:text-7xl{
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+
+  .md\:text-2xl{
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .md\:text-3xl{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .md\:text-sm{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .md\:text-5xl{
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 1024px){
+  .lg\:text-7xl{
+    font-size: 4.5rem;
+    line-height: 1;
+  }
 }
