@@ -25,6 +25,7 @@ exports.admin_post = asynHandler(async (req, res) => {
   } else {
     //Handle incorrect answer
     res.status(400).render("admin", {
+      title: "Admin",
       question: riddle.question,
       errors: { passcode: ["Incorrect answer. Please try again."] },
     });

@@ -47,10 +47,10 @@ exports.join_post = asynHandler(async (req, res) => {
   if (passcode.trim().toLowerCase() === riddle.answer.toLowerCase()) {
     await db.updateMemberStatus(user_id, "member");
     res.redirect("/");
-    console.log("Correct");
   } else {
     //Handle incorrect answer
     res.status(400).render("join", {
+      title: "Join",
       question: riddle.question,
       errors: { passcode: ["Incorrect answer. Please try again."] },
     });
