@@ -13,6 +13,7 @@ module.exports = {
         "secondary-500": "#1E1E1E",
 
         "accent-500": "#FF2E2E",
+        "accent-600": "#CE2424",
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],

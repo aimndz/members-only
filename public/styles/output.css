@@ -893,3 +893,36 @@ video {
   --tw-placeholder-opacity: 1;
   color: rgb(129 129 129 / var(--tw-placeholder-opacity));
 }
+
+.transition-all{
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.delay-75{
+  transition-delay: 75ms;
+}
+
+.duration-300{
+  transition-duration: 300ms;
+}
+
+.ease-in-out{
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover\:bg-accent-600:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(206 36 36 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-secondary-400:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 55 55 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-accent-500:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 46 46 / var(--tw-bg-opacity));
+}
