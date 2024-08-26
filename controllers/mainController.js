@@ -17,7 +17,14 @@ exports.index = asynHandler(async (req, res) => {
     };
   });
 
-  res.render("index", { user: req.user, messages: formattedMessages });
+  // Sort to latest to oldest
+  formattedMessages.sort((a, b) => b.id - a.id);
+
+  res.render("messages", {
+    title: "Home",
+    user: req.user,
+    messages: formattedMessages,
+  });
 });
 
 // Handle join GET
@@ -52,7 +59,9 @@ exports.join_post = asynHandler(async (req, res) => {
 
 // Handle create GET
 exports.create_get = asynHandler(async (req, res) => {
-  res.render("create");
+  res.render("create", {
+    title: "Create",
+  });
 });
 
 // Handle create POST

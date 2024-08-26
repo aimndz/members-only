@@ -1,24 +1,25 @@
-<h1>Create</h1>
+<div class="w-96 self-center mx-auto">
+  <h1 class="max-w-2xl text-secondary-400 font-bold text-7xl text-center"><%= title %></h1>
 
-<form action="/create" method="POST">
+  <form action="/create" method="POST" class="space-y-5">
 
-  <!-- Title input -->
-  <div>
-    <label for="title">Title</label>
-    <input id="title" name="title" type="text">
-  </div>
+    <div>
+      <!-- Title input -->
+      <%-include("partials/input", {text: "Title", name: "title", type: "text", value: (locals.inputs && locals.inputs.title) || '', placeholder: "Enter title" }) %>
+      <!-- Title errors -->
+      <%- include('partials/error', { errors: locals.errors, field: 'title' }) %>
+    </div>
 
-  <!-- Title errors -->
-  <%- include('partials/error', { errors: locals.errors, field: 'title' }) %>
+    <div>
+      <!-- Message input -->
+      <label for="username" class="text-xs mb-2">Message</label>
+      <textarea name="message" id="message" rows="8" placeholder="Enter a message" class="w-full block bg-primary-900 border placeholder-secondary-300 border-solid border-secondary-400 p-3 rounded-lg"><%= (locals.inputs && locals.inputs.message) || ''%></textarea>
 
-  <!-- Message input -->
-  <div>
-    <label for="message">Message</label>
-    <input id="message" name="message" type="text">
-  </div>
+      <!-- Message errors -->
+      <%- include('partials/error', { errors: locals.errors, field: 'message' }) %>
+    </div>
 
-  <!-- Message errors -->
-  <%- include('partials/error', { errors: locals.errors, field: 'message' }) %>
-
-  <button type="submit">Submit</button>
-</form>
+    <!-- Submit button -->
+    <%- include('partials/button', {text: "Create"}) %>
+  </form>
+</div>

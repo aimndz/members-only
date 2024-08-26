@@ -36,7 +36,11 @@ exports.delete_get = asynHandler(async (req, res) => {
   const message = await db.getMessageById(req.params.id);
   console.log(message);
 
-  res.render("delete", { message: message[0] });
+  res.render("delete", {
+    title: "Delete",
+    message: message[0],
+    user: req.user,
+  });
 });
 
 // Handle delete POST

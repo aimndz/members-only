@@ -1,0 +1,34 @@
+<div class=" flex max-w-2xl mx-auto justify-between items-center mt-10">
+  <h1 class="max-w-2xl text-secondary-400 font-bold text-7xl ">Messages</h1>
+  <% if (user && user.mem_status !== "basic") { %>
+  <a href="/create" class="block font-bold">+ Create</a>
+  <% } %>
+</div>
+
+<ul class="space-y-3 pb-20">
+  <% messages.forEach((message) => { %>
+  <li class="p-3 max-w-2xl bg-secondary-500 border border-solid border-secondary-400 rounded-lg mx-auto">
+
+    <div class="flex justify-between">
+      <p class="message-username font-semibold text-xs mb-3 text-secondary-200">
+        <% if (!user) { %>
+        Anonymous
+        <% } else if (user.username === message.username) { %>
+        You • <%= message.created_at %>
+        <% } else { %>
+        <%= message.username %> • <%= message.created_at %>
+        <% } %>
+      </p>
+      <!-- Handle delete -->
+      <%if (user && user.mem_status === "admin") { %>
+      <a class=" text-xs text-accent-500" href=<%= `/${message.id}/delete` %>>Delete</a>
+      <% } %>
+    </div>
+
+    <p class="message-title font-bold"><%= message.title %></p>
+    <p class="message-text text-xs"><%= message.text %></p>
+  </li>
+  <% }) %>
+</ul>
+
+<% if (user) { %> <% }%>

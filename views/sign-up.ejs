@@ -1,50 +1,48 @@
-<h1>Sign up</h1>
+<div class="w-3/4 self-center">
+  <h1 class="font-bold text-3xl mb-10"><%= title %></h1>
 
-<form action="/sign-up" method="POST">
+  <form action="/sign-up" method="POST" class="space-y-5">
 
-  <!-- First name input -->
-  <div>
-    <label for="first_name">First name</label>
-    <input id="first_name" name="first_name" type="text" value="<%= (locals.inputs && locals.inputs.first_name) || '' %>">
-  </div>
+    <div class="flex gap-3 w-full">
+      <div class="w-full">
+        <!-- First name input -->
+        <%-include("partials/input", {text: "First name", name: "first_name", type: "text", value: (locals.inputs && locals.inputs.first_name) || '', placeholder: "Enter your first name" }) %>
+        <!-- First name errors -->
+        <%- include('partials/error', { errors: locals.errors, field: 'first_name' }) %>
+      </div>
 
-  <!-- First name errors -->
-  <%- include('partials/error', { errors: locals.errors, field: 'first_name' }) %>
+      <div class="w-full">
+        <!-- Last name input -->
+        <%-include("partials/input", {text: "Last name", name: "last_name", type: "text", value: (locals.inputs && locals.inputs.last_name) || '', placeholder: "Enter your last name" }) %>
+        <!-- Last name errors -->
+        <%- include('partials/error', { errors: locals.errors, field: 'last_name' }) %>
+      </div>
+    </div>
 
-  <!-- Last name input -->
-  <div>
-    <label for="last_name">Last name</label>
-    <input id="last_name" name="last_name" type="text" value="<%= (locals.inputs && locals.inputs.last_name) || '' %>">
-  </div>
+    <div>
+      <!-- Username input -->
+      <%-include("partials/input", {text: "Username", name: "username", type: "text", value: (locals.inputs && locals.inputs.username) || '', placeholder: "Enter your username" }) %>
+      <!-- Username errors -->
+      <%- include('partials/error', { errors: locals.errors, field: 'username' }) %>
+    </div>
 
-  <!-- Last name errors -->
-  <%- include('partials/error', { errors: locals.errors, field: 'last_name' }) %>
+    <div>
+      <!-- Password input -->
+      <%-include("partials/input", {text: "Password", name: "password", type: "password", value: (locals.inputs && locals.inputs.password) || '', placeholder: "Enter a password" }) %>
+      <!-- Password errors -->
+      <%- include('partials/error', { errors: locals.errors, field: 'password' }) %>
+    </div>
 
-  <!-- Username input -->
-  <div>
-    <label for="username">Username</label>
-    <input id="username" name="username" type="text" value="<%= (locals.inputs && locals.inputs.username) || '' %>">
-  </div>
+    <div>
+      <!--Confirm Password input -->
+      <%-include("partials/input", {text: "Confirm password", name: "confirm_password", type: "password", value: (locals.inputs && locals.inputs.confirm_password) || '', placeholder: "Confirm your password" }) %>
+      <!--Confirm Password errors -->
+      <%- include('partials/error', { errors: locals.errors, field: 'confirm_password' }) %>
+    </div>
 
-  <!-- Username errors -->
-  <%- include('partials/error', { errors: locals.errors, field: 'username' }) %>
+    <!-- Submit button -->
+    <%- include('partials/button', {text: "Submit"}) %>
+  </form>
 
-  <!-- Password input -->
-  <div>
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" value="<%= (locals.inputs && locals.inputs.password) || ''%>">
-  </div>
-
-  <!-- Password errors -->
-  <%- include('partials/error', { errors: locals.errors, field: 'password' }) %>
-
-  <div>
-    <label for="confirm_password">Confirm Password</label>
-    <input id="confirm_password" name="confirm_password" type="password" value="<%= (locals.inputs &&locals.inputs.confirm_password) || ''%>">
-  </div>
-
-  <!--Confirm Password errors -->
-  <%- include('partials/error', { errors: locals.errors, field: 'confirm_password' }) %>
-
-  <button type="submit">Sign up</button>
-</form>
+  <a href="/login" class="underline mt-3 block text-center">Already have an account? <span class="font-semibold">Login</span></a>
+</div>
